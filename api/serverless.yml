@@ -1,0 +1,25 @@
+---
+service: rock
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+
+plugins:
+  - serverless-offline
+  - serverless-webpack
+
+custom:
+  serverless-offline:
+    babelOptions:
+      presets:
+        - es2015
+        - stage-0
+
+functions:
+  hello:
+    handler: src/index.handler
+    events:
+      - http:
+          path: /
+          method: post
